@@ -1,0 +1,69 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "5d461d8"
+hash = "e3260d0b1feded8c8e3ae3afa1169e30"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "5d461d8"
+hash = "7b625412411be411153886894d9acaf"
+
+[[plugin.deps]]
+use = "uhs-robert/recycle-bin"
+rev = "fa68711"
+hash = "8714306b5cac6359edbacbf545fbd691"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mactag"
+rev = "5d461d8"
+hash = "b751c60cc4846cd582f5c8d64fa0cd50"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "8cd50c6"
+hash = "15e5b67a241172cbb86b8fbf9e63692"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-paste"
+rev = "8cd50c6"
+hash = "3f8d49413bc8691b4c652eb417a20178"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "8cd50c6"
+hash = "88e56a64b7ce7c4314427452343fef17"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "8cd50c6"
+hash = "e0d59bd47866a6a574c74574097e5070"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "8cd50c6"
+hash = "5b1c276b75cae91cbbdbe7863f39a540"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:diff"
+rev = "8cd50c6"
+hash = "39ce0924dfe3989dc89d7caa1473c77c"
+
+[[flavor.deps]]
+use = "Mintass/rose-pine"
+rev = "d91f8f2"
+hash = "87da3630653b6d272e43658418599188"
+
+[[flavor.deps]]
+use = "CFY98/synthwave84"
+rev = "b7bb92e"
+hash = "71390657660b3639d1a3caec3f734511"
+
+[[flavor.deps]]
+use = "identityapproved/lain"
+rev = "e2a3bb2"
+hash = "992f7d08d6093732621ff49022ef6053"
+
+[[flavor.deps]]
+use = "rapidrabbit76/claude-inspired"
+rev = "6646a90"
+hash = "880312879b18b91e4a356f6a359e108a"

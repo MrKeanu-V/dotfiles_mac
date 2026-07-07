@@ -1,0 +1,118 @@
+# keymap.toml
+
+# 回车键：智能打开（yazi默认支持，此处作为注释保留）
+# [[mgr.prepend_keymap]]
+# on   = "<Enter>"
+# run  = "open"
+# desc = "Open selected file(s)"
+
+# e 键：编辑模式
+[[mgr.prepend_keymap]]
+on   = "e"
+run  = "edit"
+desc = "Edit with Neovim"
+
+# o 键：强制用 Finder 打开当前目录/文件
+[[mgr.prepend_keymap]]
+on   = "o"
+run  = '''shell --block 'open "$@"' '''
+desc = "Open in Finder"
+
+# Recycle Bin 回收站管理
+[[mgr.prepend_keymap]]
+on   = ["R", "b"]
+run  = "plugin recycle-bin"
+desc = "Open Recycle Bin menu"
+
+# Mount 磁盘挂载管理器
+[[mgr.prepend_keymap]]
+on   = ["M"]
+run  = "plugin mount"
+desc = "Open Mount Manager"
+
+# MacTag 添加快捷键
+[[mgr.prepend_keymap]]
+on   = ["t", "a"]
+run  = "plugin mactag add"
+desc = "Tag selected files"
+
+# MacTag 移除快捷键
+[[mgr.prepend_keymap]]
+on   = ["t", "r"]
+run  = "plugin mactag remove"
+desc = "Untag selected files"
+
+# Toggle-pane 最小化预览
+[[mgr.prepend_keymap]]
+on   = ["T", "v"]
+run  = "plugin toggle-pane min-preview"
+desc = "Show or hide the preview pane"
+
+# Toggle-pane 最大化预览
+[[mgr.prepend_keymap]]
+on   = ["T", "V"]
+run  = "plugin toggle-pane max-preview"
+desc = "Maximize or restore the preview pane"
+
+# Toggle-pane 最小化当前
+[[mgr.prepend_keymap]]
+on   = ["T", "c"]
+run  = "plugin toggle-pane min-current"
+desc = "Show or hide the current pane"
+
+# Toggle-pane 最大化当前
+[[mgr.prepend_keymap]]
+on   = ["T", "C"]
+run  = "plugin toggle-pane max-current"
+desc = "Maximize or restore the current pane"
+
+# Toggle-pane 最小化父级
+[[mgr.prepend_keymap]]
+on   = ["T", "p"]
+run  = "plugin toggle-pane min-parent"
+desc = "Show or hide the parent pane"
+
+# Toggle-pane 最大化父级
+[[mgr.prepend_keymap]]
+on   = ["T", "P"]
+run  = "plugin toggle-pane max-parent"
+desc = "Maximize or restore the parent pane"
+
+# Smart-paste 光标粘贴
+[[mgr.prepend_keymap]]
+on   = "p"
+run  = "plugin smart-paste"
+desc = "Paste into the hovered directory or CWD"
+
+# Chmod 插件
+[[mgr.prepend_keymap]]
+on   = [ "c", "m" ]
+run  = "plugin chmod"
+desc = "Chmod on selected files"
+
+# Diff 插件 对比选定和悬浮文件
+[[mgr.prepend_keymap]]
+on   = "<C-d>"
+run  = "plugin diff"
+desc = "Diff the selected with the hovered file"
+
+# 基础导航优化
+append_keymap = [
+    # 使用 h/j/k/l 进行导航（Yazi 默认支持，如需强制覆盖可在此添加）
+    # { on = "h", run = "leave", desc = "Go back to parent directory" },
+    # { on = "j", run = "arrow 1", desc = "Move cursor down" },
+    # { on = "k", run = "arrow -1", desc = "Move cursor up" },
+    # { on = "l", run = "enter", desc = "Enter directory" },
+
+    # 添加快捷键（优先级低于默认）
+    { on = ["g", "h"], run = "cd ~", desc = "跳转到 Home" },
+
+    # 添加自定义快捷键（优先级高于默认）
+    { on = "<C-a>", run = "select_all", desc = "选择所有文件" },
+
+    # 预览开关（空格键）
+    { on = "<Space>", run = "preview", desc = "Toggle preview" },
+
+    # 添加快捷键（优先级低于默认）
+    { on = ["g", "h"], run = "cd ~", desc = "跳转到 Home" },
+]

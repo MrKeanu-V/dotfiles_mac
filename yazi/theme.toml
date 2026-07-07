@@ -1,0 +1,13 @@
+# 主题一键配置
+[flavor]
+# 粉色今敏
+light = "lain"
+# 简约
+# dark = "rose-pine"
+
+# others
+# 浅蓝色系
+# dark = "synthwave84"
+# 棕红色系
+dark  = "claude-inspired"
+# light = "claude-inspired"
