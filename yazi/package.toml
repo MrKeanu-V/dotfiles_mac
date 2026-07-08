@@ -48,6 +48,11 @@ use = "yazi-rs/plugins:diff"
 rev = "8cd50c6"
 hash = "39ce0924dfe3989dc89d7caa1473c77c"
 
+[[plugin.deps]]
+use = "llanosrocas/yaziline"
+rev = "25161c1"
+hash = "5c7802a9ac249be88729978e3b9525bc"
+
 [[flavor.deps]]
 use = "Mintass/rose-pine"
 rev = "d91f8f2"

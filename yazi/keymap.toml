@@ -6,6 +6,18 @@
 # run  = "open"
 # desc = "Open selected file(s)"
 
+# Cmd-g：启动LazyGit
+[[mgr.prepend_keymap]]
+on   = "<C-g>"
+run  = "shell --confirm --block lazygit"
+desc = "Lazygit"
+
+# S 键：当前目录新启Shell
+[[mgr.prepend_keymap]]
+on   = "S"
+run  = 'shell "$SHELL" --block --confirm'
+desc = "Start new Shell"
+
 # e 键：编辑模式
 [[mgr.prepend_keymap]]
 on   = "e"
