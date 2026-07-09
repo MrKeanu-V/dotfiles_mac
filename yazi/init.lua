@@ -56,7 +56,10 @@ require("mactag"):setup({
 })
 
 -- 回收站管理
-require("recycle-bin"):setup()
+require("recycle-bin"):setup({
+	-- Optional: Override automatic trash directory discovery
+	-- trash_dir = "~/.Trash", -- Uncomment to use specific directory
+})
 
 -- Git
 require("git"):setup({
