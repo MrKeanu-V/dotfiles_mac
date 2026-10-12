@@ -1,0 +1,84 @@
+# =============================================================================
+#  .gitignore - macOS dotfiles / config backup
+#
+#  Contents: clash / ghostty / karabiner / nvim / raycast / sketchybar / yazi /
+#            starship
+#  Rule: only personal configuration is versioned here. Anything that is
+#        machine-generated, re-downloadable, regenerable or secret stays out.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# macOS system files
+# -----------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.DocumentRevisions-V100
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+# Volume root leftovers
+.AppleDB
+.AppleDesktop
+.NetworkTrash
+.apdisk
+# "Icon" is an actual file name followed by a carriage return
+Icon?
+
+# -----------------------------------------------------------------------------
+# Secrets & credentials (never commit, never share)
+# -----------------------------------------------------------------------------
+# Raycast login state (contains "accesstoken" and "token"). Raycast recreates
+# this file automatically the next time you sign in, so there is no reason to
+# publish it, and every reason not to.
+raycast/config.json
+# Generic local secret files
+*.local
+.env
+.env.*
+!.env.example
+
+# -----------------------------------------------------------------------------
+# Clash / ClashX / mihomo
+# -----------------------------------------------------------------------------
+# Runtime cache + logs: rewritten on every launch, no archival value
+clash/cache.db
+clash/*.log
+clash/logs/
+# Imported subscription profiles (contain your server URLs / credentials)
+clash/profiles/
+# GeoIP database: clash downloads it automatically on first run (see README)
+clash/Country.mmdb
+
+# -----------------------------------------------------------------------------
+# Karabiner-Elements
+# -----------------------------------------------------------------------------
+# Snapshot folder created automatically whenever the config changes.
+# The real config to keep is karabiner/karabiner.json.
+karabiner/automatic_backups/
+
+# -----------------------------------------------------------------------------
+# Node / JavaScript - Raycast extension installs
+# -----------------------------------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.yarn/
+.pnp.*
+*.tsbuildinfo
+
+# -----------------------------------------------------------------------------
+# Editors & general temp junk
+# -----------------------------------------------------------------------------
+*.swp
+*.swo
+*~
+*.log
+.idea/
+.vscode/
