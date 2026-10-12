@@ -20,9 +20,14 @@ desc = "Start new Shell"
 
 # e 键：编辑模式
 [[mgr.prepend_keymap]]
-on   = "e"
-run  = "edit"
-desc = "Edit with Neovim"
+on   = ["e", "v"]
+run  = 'shell "nvim \"$@\""'
+desc = "Open with Neovim (blocking)"
+
+[[mgr.prepend_keymap]]
+on   = ["e", "c"]
+run  = 'shell "code \"$@\""'
+desc = "Open with VSCode"
 
 # o 键：强制用 Finder 打开当前目录/文件
 [[mgr.prepend_keymap]]
@@ -126,5 +131,13 @@ append_keymap = [
     { on = "<Space>", run = "preview", desc = "Toggle preview" },
 
     # 添加快捷键（优先级低于默认）
-    { on = ["g", "h"], run = "cd ~", desc = "跳转到 Home" },
+    # { on = ["g", "h"], run = "cd ~", desc = "跳转到 Home" },
+
+    # 快速访问Workspace
+    # { on = ["g", "w"], run = "cd ~/Workspace/", desc = "Go Workspace"},
 ]
+
+  [[mgr.append_keymap]]
+on   = ["g", "w"]
+run  = "cd ~/Workspace/"
+desc = "Go ~/Workspace/"

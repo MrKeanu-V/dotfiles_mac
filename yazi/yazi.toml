@@ -26,7 +26,7 @@ max_width = 1920            # 图片预览最大宽度
 max_height = 1080           # 图片预览最大高度
 
 # 文件打开器配置
-[opener]
+# [opener]
 # 编辑类：使用 nvim
 edit = [
     { run = 'nvim "$@"', block = true, desc = "Edit with Neovim" },
@@ -40,35 +40,35 @@ reveal = [
     { run = 'open -R "$@"', desc = "Reveal in Finder" },
 ]
 
-[open]
 # 文件类型与打开器映射
-rules = [
-    # 1. 目录优先处理：按回车用 Finder 打开
-    { mime = "inode/directory", use = "open" }, 
-    
-    # 2. 文本与代码类：强制使用 nvim
-    { mime = "text/*", use = "edit" },
-    { mime = "application/json", use = "edit" },
-    { mime = "application/x-shellscript", use = "edit" },
-    
-    # 3. 常见后缀名补漏（防止 MIME 识别不准）
-    { mime = "text/*", name = "*.cfg", use = "edit" },
-    { mime = "text/*", name = "*.conf", use = "edit" },
-    { mime = "text/*", name = "*.cpp", use = "edit" },
-    { mime = "text/*", name = "*.ini", use = "edit" },
-    { mime = "text/*", name = "*.json", use = "edit" },
-    { mime = "text/*", name = "*.lua", use = "edit" },
-    { mime = "text/*", name = "*.toml", use = "edit" },
-    { mime = "text/*", name = "*.yaml", use = "edit" },
-    { mime = "text/*", name = "*.yml", use = "edit" },
-    
-    # 4. 多媒体与其他：使用系统默认应用
-    { mime = "image/*", use = "open" },
-    { mime = "video/*", use = "open" },
-    { mime = "audio/*", use = "open" },
-    { mime = "application/pdf", use = "open" },
-    { mime = "application/zip", use = "open" },
-]
+# [open]
+# rules = [
+#     # 1. 目录优先处理：按回车用 Finder 打开
+#     { mime = "inode/directory", use = "open" }, 
+#     
+#     # 2. 文本与代码类：强制使用 nvim
+#     { mime = "text/*", use = "edit" },
+#     { mime = "application/json", use = "edit" },
+#     { mime = "application/x-shellscript", use = "edit" },
+#     
+#     # 3. 常见后缀名补漏（防止 MIME 识别不准）
+#     { mime = "text/*", name = "*.cfg", use = "edit" },
+#     { mime = "text/*", name = "*.conf", use = "edit" },
+#     { mime = "text/*", name = "*.cpp", use = "edit" },
+#     { mime = "text/*", name = "*.ini", use = "edit" },
+#     { mime = "text/*", name = "*.json", use = "edit" },
+#     { mime = "text/*", name = "*.lua", use = "edit" },
+#     { mime = "text/*", name = "*.toml", use = "edit" },
+#     { mime = "text/*", name = "*.yaml", use = "edit" },
+#     { mime = "text/*", name = "*.yml", use = "edit" },
+#     
+#     # 4. 多媒体与其他：使用系统默认应用
+#     { mime = "image/*", use = "open" },
+#     { mime = "video/*", use = "open" },
+#     { mime = "audio/*", use = "open" },
+#     { mime = "application/pdf", use = "open" },
+#     { mime = "application/zip", use = "open" },
+# ]
 
 # 预览器设置，基于Piper
 [[plugin.prepend_previewers]]
