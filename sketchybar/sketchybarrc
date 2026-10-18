@@ -1,91 +1,154 @@
-# This is a demo config to showcase some of the most important commands.
-# It is meant to be changed and configured, as it is intentionally kept sparse.
-# For a (much) more advanced configuration example see my dotfiles:
-# https://github.com/FelixKratz/dotfiles
+#!/usr/bin/env bash
+# ─────────────────────────────────────────────────────────────
+# ~/.config/sketchybar/sketchybarrc
+# My work flow status bar: left is space region, right is status region.
+# ─────────────────────────────────────────────────────────────
 
+CONFIG_DIR="$HOME/.config/sketchybar"
 PLUGIN_DIR="$CONFIG_DIR/plugins"
+ITEM_DIR="$CONFIG_DIR/items"
 
-##### Bar Appearance #####
-# Configuring the general appearance of the bar.
-# These are only some of the options available. For all options see:
-# https://felixkratz.github.io/SketchyBar/config/bar
-# If you are looking for other colors, see the color picker:
-# https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
+##### Color Settings #####
+source "$CONFIG_DIR/my_colors.sh"
 
-sketchybar --bar position=top height=40 blur_radius=30 color=0x40000000
+##### Font Settings #####
+FONT_ICON="Hack Nerd Font:Bold:15.0"
+FONT_APP="sketchybar-app-font:Regular:17.0"
+FONT_LABEL="Hack Nerd Font:Regular:13.0"   # 本机只有 Regular/Bold/Italic/BoldItalic，无 Medium（实测字体表）
 
-##### Changing Defaults #####
-# We now change some default values, which are applied to all further items.
-# For a full list of all available item properties see:
-# https://felixkratz.github.io/SketchyBar/config/items
+##### StatusBar Height: cur is 38pt #####
+NOTCH_SAFE_TOP="$(osascript -l JavaScript -e 'ObjC.import("AppKit"); ObjC.unwrap($.NSScreen.mainScreen.safeAreaInsets.top)' 2>/dev/null)"
+BAR_HEIGHT="$(awk -v v="$NOTCH_SAFE_TOP" 'BEGIN{ if (v ~ /^[0-9]+(\.[0-9]+)?$/) printf "%d", v + 0.5; else print 32 }' 2>/dev/null)"
+[ -z "$BAR_HEIGHT" ] && BAR_HEIGHT=32
+[ "$BAR_HEIGHT" -lt 24 ] 2>/dev/null && BAR_HEIGHT=32   # 无刘海屏 → 常规高度
+[ "$BAR_HEIGHT" -gt 48 ] 2>/dev/null && BAR_HEIGHT=48   # 防呆上限
 
-default=(
-  padding_left=5
-  padding_right=5
-  icon.font="Hack Nerd Font:Bold:17.0"
-  label.font="Hack Nerd Font:Bold:14.0"
-  icon.color=0xffffffff
-  label.color=0xffffffff
-  icon.padding_left=4
-  icon.padding_right=4
-  label.padding_left=4
-  label.padding_right=4
-)
-sketchybar --default "${default[@]}"
+##### Global Settings #####
+sketchybar --bar \
+    position=top \
+    height=$BAR_HEIGHT \
+    color=$BG_BAR \
+    blur_radius=30 \
+    margin=0 \
+    y_offset=0 \
+    padding_left=8 \
+    padding_right=12 \
+    notch_width=188 \
+    sticky=on \
+    topmost=on \
+    font_smoothing=on \
+    shadow=off \
+    show_in_fullscreen=on \
+    # border_width=2 \  # for debug
+    display=main
 
-##### Adding Mission Control Space Indicators #####
-# Let's add some mission control spaces:
-# https://felixkratz.github.io/SketchyBar/config/components#space----associate-mission-control-spaces-with-an-item
-# to indicate active and available mission control spaces.
+sketchybar --default \
+    padding_left=2 \
+    padding_right=2 \
+    icon.font="$FONT_ICON" \
+    icon.color=$FG_IDLE \
+    icon.padding_left=6 \
+    icon.padding_right=6 \
+    label.font="$FONT_LABEL" \
+    label.color=$FG_LABEL \
+    label.padding_left=0 \
+    label.padding_right=6 \
+    background.drawing=off \
+    background.height=24 \
+    background.corner_radius=6
 
-SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
-for i in "${!SPACE_ICONS[@]}"
-do
-  sid="$(($i+1))"
-  space=(
-    space="$sid"
-    icon="${SPACE_ICONS[i]}"
-    icon.padding_left=7
-    icon.padding_right=7
-    background.color=0x40ffffff
-    background.corner_radius=5
-    background.height=25
-    label.drawing=off
-    script="$PLUGIN_DIR/space.sh"
-    click_script="yabai -m space --focus $sid"
-  )
-  sketchybar --add space space."$sid" left --set space."$sid" "${space[@]}"
+##### Left: Space Region 1–5 #####
+
+#  for more icon details: https://www.nerdfonts.com/cheat-sheet
+SPACE_ROLE_ICON=("" "" "󰖟" "" "" "󰀻")
+#                ^1  终端 U+E795        ^2 󰖟 浏览器 U+F059F  ^3  编程/读写 U+F0169
+#                ^4  工作区 U+F017A          ^5 󰀻 其他 U+F003B   ^0 占位不用
+
+# label 字体：模式 A（:shortcode: 连字）用 app 字体；模式 B 用 Nerd 字体。
+source "$PLUGIN_DIR/my_icon_map.sh"
+if [ "$ICON_MODE" = A ]; then
+    SPACE_LABEL_FONT="$ICON_FONT_APP"
+else
+    SPACE_LABEL_FONT="$ICON_FONT_NERD"
+fi
+
+# 5 个 space item = 纯显示 + 点击
+for SID in 1 2 3 4 5; do
+    sketchybar --add space space.$SID left \
+        --set space.$SID \
+            space=$SID \
+            icon="$SID${SPACE_ROLE_ICON[$SID]}" \
+            icon.padding_left=8 \
+            icon.padding_right=4 \
+            label.drawing=off \
+            label.font="$SPACE_LABEL_FONT" \
+            label.padding_left=2 \
+            label.padding_right=8 \
+            background.drawing=on \
+            background.color=$TRANSPARENT \
+            script="$PLUGIN_DIR/space_click.sh" \
+        --subscribe space.$SID mouse.clicked
 done
 
-##### Adding Left Items #####
-# We add some regular items to the left side of the bar, where
-# only the properties deviating from the current defaults need to be set
+# 唯一的空间事件消费者：普通 item。
+# bar_manager 的 updates 开关只作用于 BAR_COMPONENT_SPACE 类型（其余 continue），
+# 所以这个普通 item 能收到全部 5 个桌面的 space_windows_change；
+# drawing=off 也不影响脚本执行（bar_item.c: updates_only_when_shown 默认 false）。
+sketchybar --add item space.watch left \
+    --set space.watch \
+        drawing=off \
+        updates=on \
+        update_freq=0 \
+        script="$PLUGIN_DIR/space_watch.sh" \
+    --subscribe space.watch space_change space_windows_change
 
-sketchybar --add item chevron left \
-           --set chevron icon= label.drawing=off \
-           --add item front_app left \
-           --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
-           --subscribe front_app front_app_switched
 
-##### Adding Right Items #####
-# In the same way as the left items we can add items to the right side.
-# Additional position (e.g. center) are available, see:
-# https://felixkratz.github.io/SketchyBar/config/items#adding-items-to-sketchybar
+##### Right: Space region #####
 
-# Some items refresh on a fixed cycle, e.g. the clock runs its script once
-# every 10s. Other items respond to events they subscribe to, e.g. the
-# volume.sh script is only executed once an actual change in system audio
-# volume is registered. More info about the event system can be found here:
-# https://felixkratz.github.io/SketchyBar/config/events
-
+# clock
 sketchybar --add item clock right \
-           --set clock update_freq=10 icon=  script="$PLUGIN_DIR/clock.sh" \
-           --add item volume right \
-           --set volume script="$PLUGIN_DIR/volume.sh" \
-           --subscribe volume volume_change \
-           --add item battery right \
-           --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
-           --subscribe battery system_woke power_source_change
+    --set clock \
+        icon=󰥔 \
+        icon.padding_right=4 \
+        update_freq=20 \
+        script="$PLUGIN_DIR/my_clock.sh"
 
-##### Force all scripts to run the first time (never do this in a script) #####
+
+# battery
+sketchybar --add item battery right \
+    --set battery \
+        update_freq=60 \
+        script="$PLUGIN_DIR/my_battery.sh" \
+    --subscribe battery system_woke power_source_change
+
+
+# inbox
+sketchybar --add item inbox right \
+    --set inbox \
+        drawing=off \
+        icon=󰇮 \
+        icon.color=$RED \
+        update_freq=15 \
+        script="$PLUGIN_DIR/my_inbox.sh" \
+    --subscribe inbox mouse.clicked
+
+
+# CPU (stats_provider envents source)
+killall stats_provider 2>/dev/null
+sketchybar --add event system_stats 2>/dev/null
+
+stats_provider --cpu usage --interval 2 --no-units &
+
+sketchybar --add item cpu.percent right \
+    --set cpu.percent \
+        icon= \
+        icon.color=$BLUE \
+        label="--%" \
+        update_freq=0 \
+        script="$PLUGIN_DIR/my_cpu.sh" \
+    --subscribe cpu.percent system_stats mouse.clicked
+
+
+##### Final Setup #####
 sketchybar --update
+sketchybar --trigger space_change
