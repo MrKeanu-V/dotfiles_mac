@@ -6,7 +6,7 @@
 	Lain Flavor for <a href="https://github.com/sxyazi/yazi">Yazi</a>
 </h3>
 
-## (╭ರ_•́) Preview
+## (╭ರ\_•́) Preview
 
 <img src="preview.png" width="600" />
 
@@ -28,6 +28,10 @@ dark = "lain"
 Make sure your `theme.toml` doesn't contain anything other than `[flavor]`, unless you want to override certain styles of this flavor.
 
 See the [Yazi flavor documentation](https://yazi-rs.github.io/docs/flavors/overview) for more details.
+
+## ┬┴┬┴┤･ω･)ﾉ
+
+U may want walls that match - they live in my dotfiles: [identityapproved/lainland](https://github.com/identityapproved/lainland/tree/main/wallpapers).
 
 ## ⎙ License
 

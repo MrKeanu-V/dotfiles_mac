@@ -1,57 +1,52 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "5d461d8"
-hash = "e3260d0b1feded8c8e3ae3afa1169e30"
+rev = "e0bbd20"
+hash = "ba1a606728adb75b091b6eaf3fd60372"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "5d461d8"
-hash = "7b625412411be411153886894d9acaf"
-
-[[plugin.deps]]
-use = "uhs-robert/recycle-bin"
-rev = "fa68711"
-hash = "8714306b5cac6359edbacbf545fbd691"
+rev = "e0bbd20"
+hash = "17ebde15c4349f90aedbc45984b98db2"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mactag"
-rev = "5d461d8"
-hash = "b751c60cc4846cd582f5c8d64fa0cd50"
+rev = "e0bbd20"
+hash = "34e3e12060f833cc21446f23a7ced8d1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "8cd50c6"
-hash = "15e5b67a241172cbb86b8fbf9e63692"
+rev = "e0bbd20"
+hash = "5b2fbef7d1513ce38ff72623a071a5e"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-paste"
-rev = "8cd50c6"
-hash = "3f8d49413bc8691b4c652eb417a20178"
+rev = "e0bbd20"
+hash = "5be02722d97561b6f7aec22429aa00be"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "8cd50c6"
-hash = "88e56a64b7ce7c4314427452343fef17"
+rev = "e0bbd20"
+hash = "347cc6b190eb0c2fd60513cc7ae37412"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "8cd50c6"
-hash = "e0d59bd47866a6a574c74574097e5070"
+rev = "e0bbd20"
+hash = "d1e0499cae5f3aeb628c267616d4b682"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "8cd50c6"
-hash = "5b1c276b75cae91cbbdbe7863f39a540"
+rev = "e0bbd20"
+hash = "87472b05a8c420100f6a2b9cde1e7746"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:diff"
-rev = "8cd50c6"
-hash = "39ce0924dfe3989dc89d7caa1473c77c"
+rev = "e0bbd20"
+hash = "14558d2829c0aa05e99c57de8f74d199"
 
 [[plugin.deps]]
 use = "llanosrocas/yaziline"
-rev = "25161c1"
-hash = "5c7802a9ac249be88729978e3b9525bc"
+rev = "029b27d"
+hash = "ceeb45e796faf0d9eed10831ffec7701"
 
 [[flavor.deps]]
 use = "Mintass/rose-pine"
@@ -65,8 +60,8 @@ hash = "71390657660b3639d1a3caec3f734511"
 
 [[flavor.deps]]
 use = "identityapproved/lain"
-rev = "e2a3bb2"
-hash = "992f7d08d6093732621ff49022ef6053"
+rev = "7b1262d"
+hash = "96c96f3e3273a376067f50faf8e2d87d"
 
 [[flavor.deps]]
 use = "rapidrabbit76/claude-inspired"

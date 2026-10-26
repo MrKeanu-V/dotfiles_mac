@@ -9,37 +9,43 @@
 # Cmd-g：启动LazyGit
 [[mgr.prepend_keymap]]
 on   = "<C-g>"
-run  = "shell --confirm --block lazygit"
+run  = "shell --block lazygit"
 desc = "Lazygit"
 
 # S 键：当前目录新启Shell
 [[mgr.prepend_keymap]]
 on   = "S"
-run  = 'shell "$SHELL" --block --confirm'
+run  = 'shell --block "$SHELL"'
 desc = "Start new Shell"
 
 # e 键：编辑模式
 [[mgr.prepend_keymap]]
 on   = ["e", "v"]
-run  = 'shell "nvim \"$@\""'
+run  = 'shell --block nvim %s'
 desc = "Open with Neovim (blocking)"
 
+# e+c 键：Code模式
 [[mgr.prepend_keymap]]
 on   = ["e", "c"]
-run  = 'shell "code \"$@\""'
+run  = 'shell -- code %s'
 desc = "Open with VSCode"
 
-# o 键：强制用 Finder 打开当前目录/文件
+[[mgr.prepend_keymap]]
+on   = ["C", "c"]   # Code current
+run  = "shell -- code ."
+desc = "Open dir with VSCode"
+
+# o 键：强制用 Finder 打开当前目录
 [[mgr.prepend_keymap]]
 on   = "o"
-run  = '''shell --block 'open "$@"' '''
-desc = "Open in Finder"
+run  = "shell -- open ."
+desc = "Open current dir in Finder"
 
-# Recycle Bin 回收站管理
-[[mgr.prepend_keymap]]
-on   = ["R", "b"]
-run  = "plugin recycle-bin"
-desc = "Open Recycle Bin menu"
+# Recycle Bin 回收站管理（已弃用）
+# [[mgr.prepend_keymap]]
+# on   = ["R", "b"]
+# run  = "plugin recycle-bin"
+# desc = "Open Recycle Bin menu"
 
 # Mount 磁盘挂载管理器
 [[mgr.prepend_keymap]]
@@ -137,7 +143,8 @@ append_keymap = [
     # { on = ["g", "w"], run = "cd ~/Workspace/", desc = "Go Workspace"},
 ]
 
-  [[mgr.append_keymap]]
+# 快速访问Workspace
+[[mgr.append_keymap]]
 on   = ["g", "w"]
 run  = "cd ~/Workspace/"
 desc = "Go ~/Workspace/"

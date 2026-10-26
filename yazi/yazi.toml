@@ -9,7 +9,7 @@ sort_reverse = false       # 反向排序
 sort_dir_first = true      # 目录优先
 
 # 显示隐藏文件
-show_hidden = false
+show_hidden = false # use .
 show_symlink = true
 
 # 滚动偏移（光标上下保留的文件数）

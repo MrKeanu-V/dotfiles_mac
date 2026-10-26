@@ -2,8 +2,8 @@
 
 -- Full-border 边框美化
 require("full-border"):setup({
-	-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
-	type = ui.Border.ROUNDED,
+	-- Available values: plain, rounded
+	set = "rounded",
 })
 
 --Yazi-line  状态栏美化
@@ -53,12 +53,6 @@ require("mactag"):setup({
 	},
 	-- Order of the color circle showing in the line mode
 	order = 500,
-})
-
--- 回收站管理
-require("recycle-bin"):setup({
-	-- Optional: Override automatic trash directory discovery
-	-- trash_dir = "~/.Trash", -- Uncomment to use specific directory
 })
 
 -- Git
