@@ -14,7 +14,7 @@ This repository contains the configuration files (dotfiles) for my daily driver 
 ├── clash/          # Clash proxy client configurations
 ├── ghostty/        # Ghostty terminal emulator settings
 ├── nvim/           # Neovim editor configuration (Lua based)
-├── raycast/        # Raycast launcher extensions & settings
+├── raycast/        # Raycast launcher extensions & settings & scripts(my own)
 ├── sketchybar/     # Sketchybar status bar configuration
 ├── yazi/           # Yazi file manager config & plugins
 ├── .DS_Store       # macOS system file (ignored)
